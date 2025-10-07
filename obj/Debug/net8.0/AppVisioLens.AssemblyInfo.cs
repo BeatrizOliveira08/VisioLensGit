@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AppVisioLens")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e52b1511216dce2255f2774a00f85cc93aba3b89")]
 [assembly: System.Reflection.AssemblyProductAttribute("AppVisioLens")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AppVisioLens")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

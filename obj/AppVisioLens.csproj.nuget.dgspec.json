@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\beatr\\OneDrive\\Documentos\\Pds\\AppVisioLens\\AppVisioLens.csproj": {}
+    "C:\\Users\\Jeovana Knoblauch\\OneDrive\\Documentos\\GitHub\\VisioLensGit\\AppVisioLens.csproj": {}
   },
   "projects": {
-    "C:\\Users\\beatr\\OneDrive\\Documentos\\Pds\\AppVisioLens\\AppVisioLens.csproj": {
+    "C:\\Users\\Jeovana Knoblauch\\OneDrive\\Documentos\\GitHub\\VisioLensGit\\AppVisioLens.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\beatr\\OneDrive\\Documentos\\Pds\\AppVisioLens\\AppVisioLens.csproj",
+        "projectUniqueName": "C:\\Users\\Jeovana Knoblauch\\OneDrive\\Documentos\\GitHub\\VisioLensGit\\AppVisioLens.csproj",
         "projectName": "AppVisioLens",
-        "projectPath": "C:\\Users\\beatr\\OneDrive\\Documentos\\Pds\\AppVisioLens\\AppVisioLens.csproj",
-        "packagesPath": "C:\\Users\\beatr\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\beatr\\OneDrive\\Documentos\\Pds\\AppVisioLens\\obj\\",
+        "projectPath": "C:\\Users\\Jeovana Knoblauch\\OneDrive\\Documentos\\GitHub\\VisioLensGit\\AppVisioLens.csproj",
+        "packagesPath": "C:\\Users\\Jeovana Knoblauch\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Jeovana Knoblauch\\OneDrive\\Documentos\\GitHub\\VisioLensGit\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\beatr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Jeovana Knoblauch\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -63,7 +64,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
