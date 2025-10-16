@@ -1,0 +1,62 @@
+﻿@page "/ListaColaborador"
+
+@using VisioLens_Blazor.Models;
+@inject ColaboradorDAO colaboradorDAO
+
+    <title>VisioLens - Lista de Colaboradores</title>
+    <link href="/bootstrap/listacolaborador.css" rel="stylesheet" />
+  
+        <h1>Lista de Colaboradores</h1>
+
+        <div class="toolbar">
+            <input type="text" id="search" placeholder="Pesquisar Colaboradores">
+            <button id="listar">Listar</button>
+        </div>
+
+        <table class="table_colaborador">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>Data de Nacimento</th>
+                    <th>Telefone</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            @{
+                int contador = 1;
+
+                @foreach(var colaborador in listaColaborador)
+                {
+                    <tr>
+                    <td>@contador</td>
+                    <td>@colaborador.Nome</td>
+                    <td>@colaborador.Data_Nascimento</td>
+                    <td>@colaborador.Telefone</td>
+                    <td>@colaborador.Email</td>
+                    </tr>
+
+                    contador++;
+                }
+            }
+            </tbody>
+        </table>
+
+
+@code{
+    private List<Colaborador> listaColaborador = new();
+
+    protected override void OnInitialized()
+    {
+        CarregarColaborador();
+    }
+
+    private void CarregarColaborador()
+    {
+        listaColaborador = colaboradorDAO.ListarTodos();
+    }
+}
+
+

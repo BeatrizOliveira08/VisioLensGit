@@ -1,0 +1,64 @@
+﻿@page "/ListaCliente"
+
+@using VisioLens_Blazor.Models;
+@inject ClienteDAO clienteDAO
+
+<title>VisioLens - Lista de Colaboradores</title>
+<link href="/bootstrap/listacliente.css" rel="stylesheet" />
+
+<h1>Lista de Colaboradores</h1>
+
+<div class="toolbar">
+    <input type="text" id="search" placeholder="Pesquisar Colaboradores">
+    <button id="listar">Listar</button>
+</div>
+
+<table class="table_cliente">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Telefone</th>
+            <th>Endereço</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @{
+            int contador = 1;
+
+            @foreach (var cliente in listaCliente)
+            {
+                <tr>
+                    <td>@contador</td>
+                    <td>@cliente.Nome</td>
+                    <td>@cliente.CPF</td>
+                    <td>@cliente.Telefone</td>
+                    <td>@cliente.Email</td>
+                </tr>
+
+                contador++;
+            }
+        }
+    </tbody>
+</table>
+
+
+@code {
+    private List<Cliente> listaCliente = new();
+
+    protected override void OnInitialized()
+    {
+        CarregarCliente();
+    }
+
+    private void CarregarCliente()
+    {
+        listaCliente = clienteDAO.ListarTodos();
+    }
+}
+
+
+

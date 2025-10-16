@@ -1,0 +1,63 @@
+﻿@page "/ListaAgendamento"
+
+@using VisioLens_Blazor.Models;
+@inject AgendamentoDAO agendamentoDAO
+
+<link href="/bootstrap/listaagendamento.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Agendamento - VisioLens</title>
+
+<h1 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-6"> Agendamento</h1>
+
+<table class="table">
+   <thead>
+       <tr>
+            <th>#</th>
+            <th>Data</th>
+            <th>Duração</th>
+            <th>Observações</th>
+            <th>Cliente</th>
+           <th>Tipo de sessão</th>
+           <th>Fotografo</th>
+           
+       </tr>
+   </thead>
+   <tbody>
+        @{
+            int contador = 1;
+
+            @foreach(var agendamento in listaAgendamento)
+            {
+                <tr>
+                    <td>@contador</td>
+                    <td>@agendamento.Data</td>
+                    <td>@agendamento.Duracao</td>
+                    <td>@agendamento.Observacao</td>
+                    <td>@agendamento.Cliente</td>
+                    <td>@agendamento.TipoDeSessao</td>
+                    <td>@agendamento.Fotografo</td>
+                    
+                </tr>
+
+
+                contador++;
+            }
+        }
+   </tbody>
+</table>
+
+@code{
+    private List<Agendamento> listaAgendamento = new();
+
+    protected override void OnInitialized()
+    {
+        CarregarAgendamento();
+    }
+
+    private void CarregarAgendamento()
+    {
+        listaAgendamento = agendamentoDAO.ListarTodos();
+    }
+}
+
