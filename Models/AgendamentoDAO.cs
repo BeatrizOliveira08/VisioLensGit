@@ -43,7 +43,7 @@ namespace VisioLens_Blazor.Models
                 var comando = _conexao.CreateCommand("INSERT INTO agendamento VALUES (null, @_cliente, @_data, @_tipoSessao, @_duracao, @_fotografo, @_observacao)");
 
                 comando.Parameters.AddWithValue("@_cliente", agendamento.Cliente);
-                comando.Parameters.AddWithValue("@_data", agendamento.Data.ToString("YYYY-MM-DD"));
+                comando.Parameters.AddWithValue("@_data", agendamento.Data);
                 comando.Parameters.AddWithValue("@_tipoSessao", agendamento.TipoDeSessao);
                 comando.Parameters.AddWithValue("@_duracao", agendamento.Duracao);
                 comando.Parameters.AddWithValue("@_fotografo", agendamento.Fotografo);
