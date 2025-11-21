@@ -22,9 +22,9 @@ namespace VisioLens_Blazor.Models
             {
                 var pagamento = new Pagamento();
                 pagamento.Id = leitor.GetInt32("id_colab");
-                pagamento.Cliente = leitor.GetInt32("id_cli_fk");
-                pagamento.Fotografo = leitor.GetInt32("id_colab_fk");
-                pagamento.PacoteContratado = leitor.GetInt32("id_pac_fk");
+                pagamento.Cliente = DAOHelper.GetString(leitor, "cliente_pag");
+                pagamento.Fotografo = DAOHelper.GetString(leitor, "fotografo_pag");
+                pagamento.PacoteContratado = DAOHelper.GetString(leitor, "pacote_contratado_pag");
                 pagamento.ValorPago = leitor.GetDecimal("valor_pago_pag");
                 pagamento.ValorTotal = leitor.GetDecimal("valor_total_pag");
                 pagamento.ValorRestante = leitor.GetDecimal("valor_restante_pag");

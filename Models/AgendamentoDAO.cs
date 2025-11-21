@@ -22,11 +22,11 @@ namespace VisioLens_Blazor.Models
                 var agendamento = new Agendamento 
                 {
                     Id = leitor.GetInt32("id_agen"),
-                    Cliente = leitor.GetInt32("id_cli_fk"),
+                    Cliente = DAOHelper.GetString(leitor, "cliente_agen"),
                     Data = leitor.GetDateTime("data_agen"),
-                    TipoDeSessao = leitor.GetInt32("id_tip_ses_fk"),
+                    TipoDeSessao = DAOHelper.GetString(leitor, "tipo_sessao_agen"),
                     Duracao = DAOHelper.GetString(leitor, "duracao_agen"),
-                    Fotografo = leitor.GetInt32("id_colab_fk"),
+                    Fotografo = DAOHelper.GetString(leitor, "fotografo_agen"),
                     Observacao = DAOHelper.GetString(leitor, "observacao_agen")
                 };
 

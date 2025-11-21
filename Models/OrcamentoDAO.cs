@@ -22,13 +22,13 @@ namespace VisioLens_Blazor.Models
             {
                 var orcamento = new Orcamento();
                 orcamento.Id = leitor.GetInt32("id_orc");
-                orcamento.Cliente = leitor.GetInt32("id_cli_fk");
-                orcamento.Fotografo = leitor.GetInt32("id_colab_fk");
+                orcamento.Cliente = DAOHelper.GetString(leitor, "cliente_orc");
+                orcamento.Fotografo = DAOHelper.GetString(leitor, "fotografo_orc");
                 orcamento.PacoteDeFotos = DAOHelper.GetString(leitor, "pacote_fotos_orc");
                 orcamento.ValorTotal = leitor.GetDecimal("valor_total_orc");
                 orcamento.Status = DAOHelper.GetString(leitor, "status_orc");
                 orcamento.FormaDePagamento = DAOHelper.GetString(leitor, "forma_pagamento_orc");
-                orcamento.TipoDeSessao = leitor.GetInt32("id_tip_ses_fk");
+                orcamento.TipoDeSessao = DAOHelper.GetString(leitor, "tipo_sessao_orc");
 
                 lista.Add(orcamento);
             }
