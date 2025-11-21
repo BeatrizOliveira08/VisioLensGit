@@ -74,6 +74,10 @@
             {
                 throw new Exception("O campo cliente é obrigatório");
             }
+            else
+            {
+                Console.WriteLine("Agendamento Salvo!!");
+            }
 
             agendamentoDAO.Inserir(_novoAgendamento);
 

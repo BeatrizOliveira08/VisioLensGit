@@ -10,19 +10,15 @@
     <Compile Remove="Components\Pages\NovaPasta\**" />
     <Compile Remove="wwwroot\bootstrap\NovaPasta1\**" />
     <Compile Remove="wwwroot\bootstrap\NovaPasta2\**" />
-    <Compile Remove="wwwroot\bootstrap\NovaPasta\**" />
     <Content Remove="Components\Pages\NovaPasta\**" />
     <Content Remove="wwwroot\bootstrap\NovaPasta1\**" />
     <Content Remove="wwwroot\bootstrap\NovaPasta2\**" />
-    <Content Remove="wwwroot\bootstrap\NovaPasta\**" />
     <EmbeddedResource Remove="Components\Pages\NovaPasta\**" />
     <EmbeddedResource Remove="wwwroot\bootstrap\NovaPasta1\**" />
     <EmbeddedResource Remove="wwwroot\bootstrap\NovaPasta2\**" />
-    <EmbeddedResource Remove="wwwroot\bootstrap\NovaPasta\**" />
     <None Remove="Components\Pages\NovaPasta\**" />
     <None Remove="wwwroot\bootstrap\NovaPasta1\**" />
     <None Remove="wwwroot\bootstrap\NovaPasta2\**" />
-    <None Remove="wwwroot\bootstrap\NovaPasta\**" />
   </ItemGroup>
 
   <ItemGroup>

@@ -33,8 +33,16 @@
         </select>
 
         <div class="buttons">
-            <button type="submit">Salvar</button>
+            <button @onclick="Salvar">Salvar</button>
             <button type="button">Cancelar</button>
         </div>
     </form>
 </html>
+
+@code{
+    private void Salvar()
+{
+    // ação ao clicar
+    Console.WriteLine("Botão funcionando!");
+}
+}

@@ -5,6 +5,8 @@
 @inject AgendamentoDAO agendamentoDAO;
 @inject NavigationManager Navigation;
 
+<link rel="stylesheet"  href="bootstrap/agendamento/agendamentoedicao.css" />
+
 <PageTitle>Agendamento</PageTitle>
 
 <h1 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-6">Atualização Agendamento - @agendamento.Cliente</h1>
@@ -40,7 +42,7 @@
     </div>
     <div class="mb-4">
         <label for="fotografo" class="block text-sm font-medium text-gray-700">Fotografo</label>
-        <input @bind-value="agendamento.Fotografo" type="text" id="fotogravo"
+        <input @bind-value="agendamento.Fotografo" type="text" id="fotograo"
                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" />
     </div>
 

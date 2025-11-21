@@ -16,7 +16,7 @@
     <div class="container">
         <div class="topo">
             <h1>AGENDAMENTOS</h1>
-            <button class="salvar">Salvar</button>
+            <button @onclick="Salvar">Salvar</button>
         </div>
 
         <form class="formulario">
@@ -72,6 +72,13 @@
     private void CarregarAgendamentos()
     {
         listaAgendamento = agendamentoDAO.ListarTodos();
+
+    }
+
+    private void Salvar()
+    {
+        // ação ao clicar
+        Console.WriteLine("Botão funcionando!");
     }
 
 } 
