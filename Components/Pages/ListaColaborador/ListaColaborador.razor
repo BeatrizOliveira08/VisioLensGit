@@ -21,6 +21,7 @@
                     <th>Data de Nacimento</th>
                     <th>Telefone</th>
                     <th>Email</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
 
@@ -36,7 +37,18 @@
                     <td>@colaborador.Data_Nascimento</td>
                     <td>@colaborador.Telefone</td>
                     <td>@colaborador.Email</td>
-                    </tr>
+
+                    <td>
+                        <a href="/colaborador/@colaborador.Id/editar" class="btn btn-sm btn-primary mr-2">
+                            <i class="fas fa-edit"></i> Atualizar
+                        </a>
+                        <a href="/colaborador/@colaborador.Id/excluir" class="btn btn-sm btn-danger">
+                            <i class="fas fa-trash"></i> Excluir
+                        </a>
+                    </td>
+
+                </tr>
+
 
                     contador++;
                 }

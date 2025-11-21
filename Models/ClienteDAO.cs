@@ -53,5 +53,70 @@ namespace VisioLens_Blazor.Models
                 throw;
             }
         }
+
+        public Cliente BuscarPorId(int Id)
+        {
+            var comando = _conexao.CreateCommand(
+                "SELECT * FROM cliente WHERE id_cli = @id;");
+            comando.Parameters.AddWithValue("@id", Id);
+
+            var leitor = comando.ExecuteReader();
+
+            if (leitor.Read())
+            {
+                var cliente = new Cliente();
+                cliente.Id = leitor.GetInt32("id_cli");
+                cliente.Nome = DAOHelper.GetString(leitor, "nome_cli");
+                cliente.CPF = DAOHelper.GetString(leitor,"cpf_cli");
+                cliente.Telefone = DAOHelper.GetString(leitor, "telefone_cli");
+                cliente.Email = DAOHelper.GetString(leitor, "email_cli");
+
+
+                return cliente;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public void Atualizar(Cliente cliente)
+        {
+            try
+            {
+                var comando = _conexao.CreateCommand(
+                "UPDATE cliente SET Nome_cli = @_Nome, cpf_cli= @_cpf, " +
+                "telefone_cli = @_telefone, email_cli = @_email WHERE id_cli = @_id;");
+
+                comando.Parameters.AddWithValue("@_nome", cliente.Nome);
+                comando.Parameters.AddWithValue("@_cpf", cliente.CPF);
+                comando.Parameters.AddWithValue("@_telefone", cliente.Telefone);
+                comando.Parameters.AddWithValue("@_email", cliente.Email);
+                comando.Parameters.AddWithValue("@_id", cliente.Id);
+
+                comando.ExecuteNonQuery();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public void Excluir(int Id)
+        {
+            try
+            {
+                var comando = _conexao.CreateCommand(
+                "DELETE FROM cliente WHERE id_cli = @id;");
+
+                comando.Parameters.AddWithValue("@id", Id);
+
+                comando.ExecuteNonQuery();
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }

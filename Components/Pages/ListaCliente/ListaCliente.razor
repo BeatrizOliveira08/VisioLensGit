@@ -9,7 +9,7 @@
 <h1>Lista de Cliente</h1>
 
 <div class="toolbar">
-    <input type="text" id="search" placeholder="Pesquisar Cli">
+    <input type="text" id="search" placeholder="Pesquisar Cliente">
     <button id="listar">Listar</button>
 </div>
 
@@ -21,6 +21,7 @@
             <th>CPF</th>
             <th>Telefone</th>
             <th>Email</th>
+            <th>Ações</th>
         </tr>
     </thead>
 
@@ -36,6 +37,16 @@
                     <td>@cliente.CPF</td>
                     <td>@cliente.Telefone</td>
                     <td>@cliente.Email</td>
+
+                    <td>
+                        <a href="/cliente/@cliente.Id/editar" class="btn btn-sm btn-primary mr-2">
+                            <i class="fas fa-edit"></i> Atualizar
+                        </a>
+                        <a href="/cliente/@cliente.Id/excluir" class="btn btn-sm btn-danger">
+                            <i class="fas fa-trash"></i> Excluir
+                        </a>
+                    </td>
+
                 </tr>
 
                 contador++;
