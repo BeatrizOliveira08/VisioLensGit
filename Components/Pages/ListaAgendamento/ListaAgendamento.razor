@@ -13,13 +13,14 @@
 <table class="table">
    <thead>
        <tr>
-            <th>#</th>
-            <th>Data</th>
-            <th>Duração</th>
-            <th>Observações</th>
+            <th>Id</th>
             <th>Cliente</th>
-           <th>Tipo de sessão</th>
-           <th>Fotografo</th>
+            <th>Data</th>
+            <th>Tipo de sessão</th>
+            <th>Duração</th>
+            <th>Fotografo</th>
+            <th>Observações</th>
+           <th>Ações</th>
            
        </tr>
    </thead>
@@ -30,13 +31,21 @@
             @foreach(var agendamento in listaAgendamento)
             {
                 <tr>
-                    <td>@contador</td>
-                    <td>@agendamento.Data</td>
-                    <td>@agendamento.Duracao</td>
-                    <td>@agendamento.Observacao</td>
+                    <td>@agendamento.Id</td>
                     <td>@agendamento.Cliente</td>
+                    <td>@agendamento.Data</td>
                     <td>@agendamento.TipoDeSessao</td>
+                    <td>@agendamento.Duracao</td>
                     <td>@agendamento.Fotografo</td>
+                    <td>@agendamento.Observacao</td>
+                    <td>
+                         <a href="/agendamento/@agendamento.Id/editar" class="btn btn-sm btn-primary mr-2">
+                              <i class="fas fa-edit"></i> Atualizar
+                         </a>
+                        <a href="/agendamento/@agendamento.Id/excluir" class="btn btn-sm btn-danger">
+                            <i class="fas fa-trash"></i> Excluir
+                        </a>
+                    </td>
                     
                 </tr>
 
