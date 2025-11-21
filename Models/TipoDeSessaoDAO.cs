@@ -1,4 +1,6 @@
 ﻿using VisioLens_Blazor.Configs;
+using System.Data;
+
 
 namespace VisioLens_Blazor.Models
 {
