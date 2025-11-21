@@ -7,16 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Components\Pages\NovaPasta\**" />
     <Compile Remove="wwwroot\bootstrap\NovaPasta1\**" />
     <Compile Remove="wwwroot\bootstrap\NovaPasta2\**" />
-    <Content Remove="Components\Pages\NovaPasta\**" />
     <Content Remove="wwwroot\bootstrap\NovaPasta1\**" />
     <Content Remove="wwwroot\bootstrap\NovaPasta2\**" />
-    <EmbeddedResource Remove="Components\Pages\NovaPasta\**" />
     <EmbeddedResource Remove="wwwroot\bootstrap\NovaPasta1\**" />
     <EmbeddedResource Remove="wwwroot\bootstrap\NovaPasta2\**" />
-    <None Remove="Components\Pages\NovaPasta\**" />
     <None Remove="wwwroot\bootstrap\NovaPasta1\**" />
     <None Remove="wwwroot\bootstrap\NovaPasta2\**" />
   </ItemGroup>

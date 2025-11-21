@@ -92,7 +92,7 @@ namespace VisioLens_Blazor.Models
             try
             {
                 var comando = _conexao.CreateCommand(
-                "UPDATE agendamento SET cliente_agen = @_cliente, data_agen = @_data, " +
+                "UPDATE colaborador SET cliente_agen = @_cliente, data_agen = @_data, " +
                 "tipo_sessao_agen = @_tipoSessao, duracao_agen = @_duracao, fotografo_agen = @_fotografo " +
                 "observacao_agen = @_observacao WHERE id_agen = @_id;");
 

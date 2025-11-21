@@ -1,0 +1,55 @@
+﻿@page "/Colaborador" 
+
+@using VisioLens_Blazor.Models;
+@inject ColaboradorDAO colaboradorDAO
+
+<link rel="stylesheet" href="/bootstrap/colaborador.css" />
+
+<div class="colaborador">
+      <h2>Cadastro colaborador</h2>
+        <form action="cadastroColaborador">
+
+                <label for="nome">Nome:</label>
+                <input class="label-nome" type="nome" id="nome">
+
+
+                <label for="dataNasci">Data de Nascimento:</label>
+                <input class="label-dataNasc" type="dataNasc" id="dataNasc">
+
+                <label for="Telefone">Telefone:</label>
+                <input class="label-telefone" type="telefone" id="telefone">
+
+                <label for="email">E-mail:</label>
+                <input class="label-email" type="email" id="email">
+
+       
+                <button type="submit">Salvar</button>
+
+
+              
+        </form>
+ </div>
+
+
+
+@code {
+   
+        private List<Colaborador> listaColaborador = new();
+
+        protected override void OnInitialized()
+        {
+            CarregarColaborador();
+        }
+
+        private void CarregarColaborador()
+        {
+            listaColaborador = colaboradorDAO.ListarTodos();
+        }
+
+    private void Salvar()
+    {
+        // ação ao clicar
+        Console.WriteLine("Botão funcionando!");
+    }
+
+} 

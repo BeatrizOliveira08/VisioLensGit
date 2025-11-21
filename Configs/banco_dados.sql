@@ -13,6 +13,7 @@ email_cli varchar(100)
 create table colaborador (
 id_colab int primary key auto_increment,
 nome_colab varchar(200),
+cpf_colab varchar(20),
 data_nascimento_colab date,
 telefone_colab varchar(20),
 email_colab varchar(100)
