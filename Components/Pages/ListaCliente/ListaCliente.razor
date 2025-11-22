@@ -10,7 +10,11 @@
 
 <div class="toolbar">
     <input type="text" id="search" placeholder="Pesquisar Cliente">
-    <button id="listar">Listar</button>
+    <button type="button" class="btn btn-primary" @onclick="CarregarCliente">
+        Listar
+    </button>
+
+
 </div>
 
 <table class="table_cliente">
@@ -67,5 +71,9 @@
     private void CarregarCliente()
     {
         listaCliente = clienteDAO.ListarTodos();
+
+        StateHasChanged(); // força atualizar a tela
+
+
     }
 }

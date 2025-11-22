@@ -57,7 +57,7 @@ namespace VisioLens_Blazor.Models
         public Cliente BuscarPorId(int Id)
         {
             var comando = _conexao.CreateCommand(
-                "SELECT * FROM cliente WHERE id_cli = @id;");
+                "SELECT * FROM cliente WHERE id_cli = @Id;");
             comando.Parameters.AddWithValue("@id", Id);
 
             var leitor = comando.ExecuteReader();
@@ -85,7 +85,7 @@ namespace VisioLens_Blazor.Models
             try
             {
                 var comando = _conexao.CreateCommand(
-                "UPDATE cliente SET Nome_cli = @_Nome, cpf_cli= @_cpf, " +
+                "UPDATE cliente SET nome_cli = @_Nome, cpf_cli= @_cpf, " +
                 "telefone_cli = @_telefone, email_cli = @_email WHERE id_cli = @_id;");
 
                 comando.Parameters.AddWithValue("@_nome", cliente.Nome);
