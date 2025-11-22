@@ -72,8 +72,8 @@ namespace VisioLens_Blazor.Models
                 orcamento.Id = leitor.GetInt32("id_orc");
                 orcamento.Cliente = DAOHelper.GetString(leitor, "cliente_orc");
                 orcamento.Fotografo = DAOHelper.GetString(leitor,"fotografo_orc");
-                orcamento.PacoteDeFotos = DAOHelper.GetString(leitor, "pacote_foto_orc");
-                orcamento.ValorTotal= DAOHelper.GetString(leitor,"valor_toral_orc");
+                orcamento.PacoteDeFotos = DAOHelper.GetString(leitor, "pacote_fotos_orc");
+                orcamento.ValorTotal= DAOHelper.GetString(leitor,"valor_total_orc");
                 orcamento.Status = DAOHelper.GetString(leitor, "status_orc");
                 orcamento.FormaDePagamento = DAOHelper.GetString(leitor, "forma_pagamento_orc");
                 orcamento.TipoDeSessao = DAOHelper.GetString(leitor, "tipo_sessao_orc");
@@ -91,7 +91,7 @@ namespace VisioLens_Blazor.Models
             try
             {
                 var comando = _conexao.CreateCommand(
-                "UPDATE orcamento SET cliente_orc = @_cliente, fotografo_orc = @_fotografo, pacote_foto_orc = @_pacoteDeFoto " +
+                "UPDATE orcamento SET cliente_orc = @_cliente, fotografo_orc = @_fotografo, pacote_fotos_orc = @_pacotedefoto " +
                 "valor_total_orc= @_valorTotal, status_orc = @_status ,forma_pagamento_orc = @_formaDePagamento, tipo_sessao_orc = @_tipoDeSessao  WHERE id_orc= @_id;");
 
                 comando.Parameters.AddWithValue("@_cliente", orcamento.Cliente);

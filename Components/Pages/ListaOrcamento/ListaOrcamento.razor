@@ -1,0 +1,80 @@
+﻿@page "/ListaOrcamento"
+
+@using VisioLens_Blazor.Models;
+@inject OrcamentoDAO orcamentoDAO
+
+<title>VisioLens - Lista de Orçamentos</title>
+<link href="/bootstrap/listacolaborador.css" rel="stylesheet" />
+
+<h1>Lista de Orçamentos</h1>
+
+<div class="toolbar">
+    <input type="text" id="search" placeholder="Pesquisar Orçamentos">
+    <button id="listar">Listar</button>
+</div>
+
+<table class="table_orcamento">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Cliente</th>
+            <th>Fotográfo</th>
+            <th>Pacote de fotos</th>
+            <th>Valor Total</th>
+            <th>Status</th>
+            <th>Forma de pagamento</th>
+            <th>Tipo de sessão</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @{
+            int contador = 1;
+
+            @foreach (var orcamento in listaOrcamento)
+            {
+                <tr>
+                    <td>@contador</td>
+                    <th>@orcamento.Cliente</th>
+                    <th>@orcamento.Fotografo</th>
+                    <th>@orcamento.PacoteDeFotos</th>
+                    <th>@orcamento.ValorTotal</th>
+                    <th>@orcamento.Status</th>
+                    <th>@orcamento.FormaDePagamento</th>
+                    <th>@orcamento.TipoDeSessao</th>
+
+                    <td>
+                        <a href="/orcamento/@orcamento.Id/editar" class="btn btn-sm btn-primary mr-2">
+                            <i class="fas fa-edit"></i> Atualizar
+                        </a>
+                        <a href="/orcamento/@orcamento.Id/excluir" class="btn btn-sm btn-danger">
+                            <i class="fas fa-trash"></i> Excluir
+                        </a>
+                    </td>
+
+                </tr>
+
+
+                contador++;
+            }
+        }
+    </tbody>
+</table>
+
+
+@code {
+    private List<Orcamento> listaOrcamento = new();
+
+    protected override void OnInitialized()
+    {
+        CarregarOrcamento();
+    }
+
+    private void CarregarOrcamento()
+    {
+        listaOrcamento = orcamentoDAO.ListarTodos();
+    }
+}
+
+
