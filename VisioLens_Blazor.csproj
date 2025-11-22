@@ -20,6 +20,8 @@
   <ItemGroup>
     <Content Remove="Components\Pages\configuracao.razor" />
     <Content Remove="Components\Pages\Menu_Inicial.razor" />
+    <Content Remove="Components\Pages\Sessao\SessaoEditar.razor" />
+    <Content Remove="Components\Pages\Sessao\SessaoExclusao.razor" />
     <Content Remove="wwwroot\bootstrap\Agendamento.cs" />
     <Content Remove="wwwroot\bootstrap\Agendamento.razor" />
     <Content Remove="wwwroot\bootstrap\Pacote.razor" />
