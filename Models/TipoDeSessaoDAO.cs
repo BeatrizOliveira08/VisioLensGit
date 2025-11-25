@@ -57,5 +57,35 @@ namespace VisioLens_Blazor.Models
                 throw;
             }
         }
+
+        public TipoDeSessao BuscarPorId(int Id)
+        {
+            var comando = _conexao.CreateCommand(
+                "SELECT * FROM tipo_de_sessao WHERE id_tip_ses = @id;");
+            comando.Parameters.AddWithValue("@id", Id);
+
+            var leitor = comando.ExecuteReader();
+
+            if (leitor.Read())
+            {
+                var tipoDeSessao = new TipoDeSessao();
+                tipoDeSessao.Id = leitor.GetInt32("id_orc");
+                tipoDeSessao.Duracao = DAOHelper.GetString(leitor, "cliente_orc");
+                tipoDeSessao.PrecoPadrao = DAOHelper.GetString(leitor, "fotografo_orc");
+                tipoDeSessao.Quantidade = DAOHelper.GetString(leitor, "pacote_fotos_orc");
+                tipoDeSessao.Entrega = leitor.GetDateTime( "valor_total_orc");
+                tipoDeSessao.Observaçao = DAOHelper.GetString(leitor, "status_orc");
+                tipoDeSessao.Categoria = DAOHelper.GetString(leitor, "forma_pagamento_orc");
+                
+
+                return tipoDeSessao;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+
     }
 }
