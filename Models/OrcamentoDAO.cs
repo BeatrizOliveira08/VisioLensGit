@@ -91,8 +91,8 @@ namespace VisioLens_Blazor.Models
             try
             {
                 var comando = _conexao.CreateCommand(
-                "UPDATE orcamento SET cliente_orc = @_cliente, fotografo_orc = @_fotografo, pacote_fotos_orc = @_pacotedefoto " +
-                "valor_total_orc= @_valorTotal, status_orc = @_status ,forma_pagamento_orc = @_formaDePagamento, tipo_sessao_orc = @_tipoDeSessao  WHERE id_orc= @_id;");
+                "UPDATE orcamento SET cliente_orc = @_cliente, fotografo_orc = @_fotografo, pacote_fotos_orc = @_pacote_foto, " +
+                "valor_total_orc= @_valor_total, status_orc = @_status ,forma_pagamento_orc = @_forma_pagamento, tipo_sessao_orc = @_tipo_sessao  WHERE id_orc= @_id;");
 
                 comando.Parameters.AddWithValue("@_cliente", orcamento.Cliente);
                 comando.Parameters.AddWithValue("@_fotografo", orcamento.Fotografo);
