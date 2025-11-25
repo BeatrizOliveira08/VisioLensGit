@@ -1,4 +1,7 @@
 ﻿@page "/Sessao"
+
+@using VisioLens_Blazor.Models;
+@inject TipoDeSessaoDAO tipoDeSessaoDAO;
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -38,6 +41,20 @@
         </div>
     </form>
 </html>
+@code {
+    private List<TipoDeSessao> listaSessao = new();
+
+
+    protected override void OnInitialized()
+    {
+        CarregarTipoDeSessao();
+    }
+
+    private void CarregarTipoDeSessao()
+    {
+        listaSessao = tipoDeSessaoDAO.ListarTodos();
+    }
+ }
 
 @code{
     private void Salvar()

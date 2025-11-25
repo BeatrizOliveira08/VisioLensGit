@@ -25,10 +25,10 @@ namespace VisioLens_Blazor.Models
                 var tipoDeSessao = new TipoDeSessao();
                 tipoDeSessao.Id = leitor.GetInt32("id_tip_ses");
                 tipoDeSessao.Duracao = DAOHelper.GetString(leitor, "duracao_tip_ses");
-                tipoDeSessao.PrecoPadrao = leitor.GetDecimal("preco_padrao_tip_ses");
-                tipoDeSessao.Quantidade = leitor.GetInt32("quantidade_fotos_tip_ses");
+                tipoDeSessao.PrecoPadrao = DAOHelper.GetString(leitor, "preco_padrao_tip_ses");
+                tipoDeSessao.Quantidade = DAOHelper.GetString(leitor, "quantidade_fotos_tip_ses");
                 tipoDeSessao.Entrega = leitor.GetDateTime("entrega_tip_ses");
-                tipoDeSessao.Observaçao = DAOHelper.GetString(leitor, "observações_tip_ses");
+                tipoDeSessao.Observaçao = DAOHelper.GetString(leitor, "observacoes_tip_ses");
                 tipoDeSessao.Categoria = DAOHelper.GetString(leitor, "categoria_tip_ses");
 
                 lista.Add(tipoDeSessao);

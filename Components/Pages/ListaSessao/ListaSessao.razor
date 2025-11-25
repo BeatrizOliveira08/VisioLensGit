@@ -1,5 +1,63 @@
-﻿<h3>ListaSessao</h3>
+﻿@page "/ListaSessao"
+
+@using VisioLens_Blazor.Models;
+@inject TipoDeSessaoDAO tipoDeSessaoDAO;
+
+<title>VisioLens - Lista de Sessao</title>
+
+<h1 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-6">Tipo de Sessao</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Duracao</th>
+            <th>Preco</th>
+            <th>Entrega</th>
+            <th>Observacao</th>
+            <th>Categoria</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int contador = 1;
+
+            @foreach (var tipoDeSessao in listaSessao)
+            {
+                <tr>
+                    <td>@tipoDeSessao.Id</td>
+                    <td>@tipoDeSessao.Duracao</td>
+                    <td>@tipoDeSessao.PrecoPadrao</td>
+                    <td>@tipoDeSessao.Entrega</td>
+                    <td>@tipoDeSessao.Observaçao</td>
+                    <td>@tipoDeSessao.Categoria</td>
+                    <td>
+                        <a href="/sessao/@tipoDeSessao.Id/editar" class="btn btn-sm btn-primary mr-2">
+                            <i class="fas fa-edit"></i> Atualizar
+                        </a>
+                        <a href="/sessao/@tipoDeSessao.Id/excluir" class="btn btn-sm btn-danger">
+                            <i class="fas fa-trash"></i> Excluir
+                        </a>
+                    </td>
+                </tr>
+
+                contador++;
+            }
+        }
+    </tbody>
+</table>
 
 @code {
+    private List<TipoDeSessao> listaSessao = new();
 
+    protected override void OnInitialized()
+    {
+        CarregarSessao();
+    }
+
+    private void CarregarSessao()
+    {
+        listaSessao = tipoDeSessaoDAO.ListarTodos();
+    }
 }
