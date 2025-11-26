@@ -1,4 +1,4 @@
-﻿@page "/Sessao/{Id:int}/editar"
+﻿@*@page "/Sessao/{Id:int}/editar"
 @rendermode InteractiveServer
 
 @using VisioLens_Blazor.Models;
@@ -90,9 +90,9 @@
     {
         try
         {
-            orcamentoDAO.Atualizar(orcamento);
+            tipoDeSessaoDAO.Atualizar(tipoDeSessao);
 
-            Navigation.NavigateTo("/ListaColaborador");
+            Navigation.NavigateTo("/ListaSessao");
         }
         catch (Exception ex)
         {
@@ -100,4 +100,4 @@
         }
 
     }
-}
+}*@
