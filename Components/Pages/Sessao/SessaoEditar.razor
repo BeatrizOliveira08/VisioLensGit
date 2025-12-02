@@ -1,15 +1,15 @@
-﻿@*@page "/Sessao/{Id:int}/editar"
+﻿@page "/Sessao/{Id:int}/editar"
 @rendermode InteractiveServer
 
 @using VisioLens_Blazor.Models;
 @inject TipoDeSessaoDAO tipoDeSessaoDAO;
 @inject NavigationManager Navigation;
 
-<link rel="stylesheet" href="bootstrap/agendamento/agendamentoedicao.css" />
+@* <link rel="stylesheet" href="bootstrap/agendamento/agendamentoedicao.css" /> *@
 
 <PageTitle>Sessão</PageTitle>
 
-<h1 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-6">Atualização Orçamento - @orcamento.Cliente</h1>
+<h1 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-6">Atualização tipo de sessão - @tipoDeSessao.Categoria</h1>
 
 @if (erro != string.Empty)
 {
@@ -21,44 +21,39 @@
 
 <EditForm Model="tipoDeSessao" OnSubmit="Salvar">
     <div class="mb-4">
-        <label for="" class="block text-sm font-medium text-gray-700">Cliente</label>
-        <input @bind-value="orcamento.Cliente" type="text" id="cliente"
+        <label for="Duracao" class="block text-sm font-medium text-gray-700">Duracao</label>
+        <input @bind-value="tipoDeSessao.Duracao" type="text" id="duracao"
                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" />
     </div>
     <div class="mb-4">
-        <label for="Fotografo" class="block text-sm font-medium text-gray-700">Fotográfo</label>
-        <input @bind-value="orcamento.Fotografo" type="text" id="fotografo"
+        <label for="PrecoPadrao" class="block text-sm font-medium text-gray-700">Preco Padrao</label>
+        <input @bind-value="tipoDeSessao.PrecoPadrao" type="text" id="preco"
                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" />
     </div>
     <div class="mb-4">
-        <label for="PacoteFoto" class="block text-sm font-medium text-gray-700">Pacote de fotos</label>
-        <input @bind-value="orcamento.PacoteDeFotos" type="text" id="pacoteFoto"
+        <label for="QuantidadeFotos" class="block text-sm font-medium text-gray-700">Quantidade de Fotos</label>
+        <input @bind-value="tipoDeSessao.Quantidade" type="text" id="quantidade"
                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" />
     </div>
 
     <div class="mb-4">
-        <label for="ValorTotal" class="block text-sm font-medium text-gray-700">Valor Total</label>
-        <input @bind-value="orcamento.ValorTotal" type="text" id="valorTotal"
+        <label for="Entrega" class="block text-sm font-medium text-gray-700">Entrega</label>
+        <input @bind-value="tipoDeSessao.Entrega" type="text" id="entrega"
                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" />
     </div>
 
     <div class="mb-4">
-        <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
-        <input @bind-value="orcamento.ValorTotal" type="text" id="valorTotal"
+        <label for="Observacoes" class="block text-sm font-medium text-gray-700">Observacao</label>
+        <input @bind-value="tipoDeSessao.Observaçao" type="text" id="observacao"
                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" />
     </div>
 
     <div class="mb-4">
-        <label for="formaPagamento" class="block text-sm font-medium text-gray-700">Forma de Pagamento</label>
-        <input @bind-value="orcamento.FormaDePagamento" type="text" id="formaPagamento"
+        <label for="categoria" class="block text-sm font-medium text-gray-700">Categoria</label>
+        <input @bind-value="tipoDeSessao.Categoria" type="text" id="categoria"
                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" />
     </div>
 
-    <div class="mb-4">
-        <label for="TipoSessao" class="block text-sm font-medium text-gray-700"> Tipo de Sessão</label>
-        <input @bind-value="orcamento.TipoDeSessao" type="text" id="TipoSessao"
-               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" />
-    </div>
     <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Salvar</button>
 </EditForm>
 
@@ -96,8 +91,8 @@
         }
         catch (Exception ex)
         {
-            erro = $"Erro ao salvar o colaborador: {ex.Message}";
+            erro = $"Erro ao salvar a sessão: {ex.Message}";
         }
 
     }
-}*@
+}

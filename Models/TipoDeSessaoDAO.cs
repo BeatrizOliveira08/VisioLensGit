@@ -69,13 +69,13 @@ namespace VisioLens_Blazor.Models
             if (leitor.Read())
             {
                 var tipoDeSessao = new TipoDeSessao();
-                tipoDeSessao.Id = leitor.GetInt32("id_orc");
-                tipoDeSessao.Duracao = DAOHelper.GetString(leitor, "cliente_orc");
-                tipoDeSessao.PrecoPadrao = DAOHelper.GetString(leitor, "fotografo_orc");
-                tipoDeSessao.Quantidade = DAOHelper.GetString(leitor, "pacote_fotos_orc");
-                tipoDeSessao.Entrega = leitor.GetDateTime( "valor_total_orc");
-                tipoDeSessao.Observaçao = DAOHelper.GetString(leitor, "status_orc");
-                tipoDeSessao.Categoria = DAOHelper.GetString(leitor, "forma_pagamento_orc");
+                tipoDeSessao.Id = leitor.GetInt32("id_tip_ses");
+                tipoDeSessao.Duracao = DAOHelper.GetString(leitor, "duracao_tip_ses");
+                tipoDeSessao.PrecoPadrao = DAOHelper.GetString(leitor, "preco_padrao_tip_ses");
+                tipoDeSessao.Quantidade = DAOHelper.GetString(leitor, "quantidade_fotos_tip_ses");
+                tipoDeSessao.Entrega = leitor.GetDateTime( "entrega_tip_ses");
+                tipoDeSessao.Observaçao = DAOHelper.GetString(leitor, "observacoes_tip_ses");
+                tipoDeSessao.Categoria = DAOHelper.GetString(leitor, "categoria_tip_ses");
                 
 
                 return tipoDeSessao;
@@ -86,7 +86,47 @@ namespace VisioLens_Blazor.Models
             }
         }
 
-        
+        public void Atualizar(TipoDeSessao tipoDeSessao)
+        {
+            try
+            {
+                var comando = _conexao.CreateCommand(
+                "UPDATE tipo_de_sessao SET duracao_tip_ses = @_duracao, preco_padrao_tip_ses = @_preco, " +
+                "quantidade_fotos_tp_ses = @_quantidade_fotos, entrega_tip_ses = @_entrega, observacoes_tip_ses = @_observacoes, " +
+                "categoria_tip_ses = @_categoria WHERE id_tip_ses = @_id;");
+
+                comando.Parameters.AddWithValue("@_duracao", tipoDeSessao.Duracao);
+                comando.Parameters.AddWithValue("@_preco", tipoDeSessao.PrecoPadrao);
+                comando.Parameters.AddWithValue("@_quantidade_fotos", tipoDeSessao.Quantidade);
+                comando.Parameters.AddWithValue("@_entrega", tipoDeSessao.Entrega);
+                comando.Parameters.AddWithValue("@_observacoes", tipoDeSessao.Observaçao);
+                comando.Parameters.AddWithValue("@_categoria", tipoDeSessao.Categoria);
+                comando.Parameters.AddWithValue("@_id", tipoDeSessao.Id);
+
+                comando.ExecuteNonQuery();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public void Excluir(int Id)
+        {
+            try
+            {
+                var comando = _conexao.CreateCommand(
+                "DELETE FROM tipo_de_sessao WHERE id_tip_ses = @id;");
+
+                comando.Parameters.AddWithValue("@id", Id);
+
+                comando.ExecuteNonQuery();
+            }
+            catch
+            {
+                throw;
+            }
+        }
 
     }
 }
