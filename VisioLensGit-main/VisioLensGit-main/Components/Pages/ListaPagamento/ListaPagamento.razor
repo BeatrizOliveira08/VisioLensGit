@@ -1,0 +1,82 @@
+﻿@page "/ListaPagamento"
+
+@using VisioLens_Blazor.Models;
+@inject PagamentoDAO pagamentoDAO
+
+<title>VisioLens - Lista de Pagamentos</title>
+<link href="/bootstrap/listacolaborador.css" rel="stylesheet" />
+
+<h1>Lista de Pagamentos</h1>
+
+<div class="toolbar">
+    <input type="text" id="search" placeholder="Pesquisar Pagamentos">
+    <button id="listar">Listar</button>
+</div>
+
+<table class="table_pagamento">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Cliente</th>
+            <th>Fotografo</th>
+            <th>Pacote Contratado</th>
+            <th>Valor Pago</th>
+            <th>Valor Total</th>
+            <th>Valor Restante</th>
+            <th>Forma de Pagamento</th>
+            <th>Status do Pagamento</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @{
+            int contador = 1;
+
+            @foreach (var pagamento in listaPagamento)
+            {
+                <tr>
+                    <td>@contador</td>
+                    <th>@pagamento.Cliente</th>
+                    <th>@pagamento.Fotografo</th>
+                    <th>@pagamento.PacoteContratado</th>
+                    <th>@pagamento.ValorPago</th>
+                    <th>@pagamento.ValorRestante</th>
+                    <th>@pagamento.ValorTotal</th>
+                    <th>@pagamento.FormaPagamento</th>
+                    <th>@pagamento.StatusPagamento</th>
+                    
+                    <td>
+                        <a href="/pagamento/@pagamento.Id/editar" class="btn btn-sm btn-primary mr-2">
+                            <i class="fas fa-edit"></i> Atualizar
+                        </a>
+                        <a href="/pagamento/@pagamento.Id/excluir" class="btn btn-sm btn-danger">
+                            <i class="fas fa-trash"></i> Excluir
+                        </a>
+                    </td>
+
+                </tr>
+
+
+                contador++;
+            }
+        }
+    </tbody>
+</table>
+
+
+@code {
+    private List<Pagamento> listaPagamento = new();
+
+    protected override void OnInitialized()
+    {
+        CarregarPagamento();
+    }
+
+    private void CarregarPagamento()
+    {
+        listaPagamento = pagamentoDAO.ListarTodos();
+    }
+}
+
+

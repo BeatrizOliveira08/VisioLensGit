@@ -13,7 +13,6 @@ email_cli varchar(100)
 create table colaborador (
 id_colab int primary key auto_increment,
 nome_colab varchar(200),
-cpf_colab varchar(20),
 data_nascimento_colab date,
 telefone_colab varchar(20),
 email_colab varchar(100)
@@ -66,10 +65,10 @@ id_pag int primary key auto_increment,
 cliente_pag varchar(300),
 fotografo_pag varchar(300),
 pacote_contratado_pag varchar(300),
-valor_total_pag varchar(100),
+valor_pago_pag decimal,
+valor_total_pag decimal,
+valor_restante_pag decimal,
 forma_pag varchar(100),
-valor_pago_pag varchar(100),
-valor_restante_pag varchar(100),
 status_pag varchar(100)
 );
 
@@ -116,8 +115,8 @@ insert into agendamento values (null, 'Empresa XPTO', '2025-10-18', 'Corporativo
 
 select * from pagamento;
 #Inserindo dados na tabela pagamento
-insert into pagamento values (null, 'Beatriz de Oliveira', 'Jeovana Knoblauch', 'Pacote Bronze', '250,00', '250,00', '0,00', 'Pix', 'Pago');
-insert into pagamento values (null, 'Maria Aparecida Pereira', 'Maria Liz Souza', 'Pacote Prata', '400,00', '200,00', '200,00', 'Cartão de Crédito', 'Parcial');
-insert into pagamento values (null, 'Maria Eduarda Silva', 'Eduarda Nogueira', 'Pacote Ouro', '600,00', '600,00', '0,00', 'Dinheiro', 'Pago');
-insert into pagamento values (null, 'Empresa XPTO', 'Jeovana Knoblauch', 'Pacote Corporativo', '180,00', '0,00', '180,00', 'Transferência', 'Pendente');
+insert into pagamento values (null, 'Beatriz de Oliveira', 'Jeovana Knoblauch', 'Pacote Bronze', '250.00', '250.00', '0.00', 'Pix', 'Pago');
+insert into pagamento values (null, 'Maria Aparecida Pereira', 'Maria Liz Souza', 'Pacote Prata', '200.00', '400.00','200.00', 'Cartão de Crédito', 'Parcial');
+insert into pagamento values (null, 'Maria Eduarda Silva', 'Eduarda Nogueira', 'Pacote Ouro', '600.00', '600.00', '0.00', 'Dinheiro', 'Pago');
+insert into pagamento values (null, 'Empresa XPTO', 'Jeovana Knoblauch', 'Pacote Corporativo', '0.00','180.00', '180.00', 'Transferência', 'Pendente');
 

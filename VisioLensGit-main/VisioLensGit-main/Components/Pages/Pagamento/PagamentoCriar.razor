@@ -1,0 +1,120 @@
+﻿@page "/Pagamento/novo"
+@rendermode InteractiveServer
+
+@using VisioLens_Blazor.Models;
+@inject PagamentoDAO pagamentoDAO;
+@inject NavigationManager Navigation;
+
+<PageTitle>Pagamento - Novo </PageTitle>
+
+<h1 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-6">Novo Pagamento</h1>
+<link href="/bootstrap/orcamentocriar.css" rel="stylesheet" />
+@if (erro != null)
+{
+    <div class="alert alert-danger">
+        @erro
+    </div>
+}
+
+<div class="row">
+    <div class="col">
+        <EditForm Model="_novoPagamento" OnSubmit="Salvar">
+            <div class="form-group mb-4">
+                <label>Cliente</label>
+                <input @bind-value="_novoPagamento!.Cliente" type="text" class="form-control" name="Cliente"
+                       placeholder="Informe o nome do cliente" />
+            </div>
+
+            <div class="form-group mb-4">
+                <label>Fotógrafo</label>
+                <input @bind-value="_novoPagamento!.Fotografo"
+                       type="text"
+                       class="form-control"
+                       name="fotografo"
+                       placeholder="Informe o fotógrafo" />
+            </div>
+
+            <div class="form-group mb-4">
+                <label>Pacote Contratado</label>
+                <input @bind-value="_novoPagamento!.PacoteContratado" type="text" class="form-control" name="pacoteContratado"
+                       placeholder="Informe o pacote contratado" />
+            </div>
+
+            <div class="form-group mb-4">
+                <label>Valor Total</label>
+                <input @bind-value="_novoPagamento!.ValorPago" type="text" class="form-control" name="valorPago"
+                       placeholder="Informe o valor total" />
+            </div>
+
+            <div class="form-group mb-4">
+                <label>Valor Total</label>
+                <input @bind-value="_novoPagamento!.ValorTotal" type="text" class="form-control" name="valorTotal"
+                       placeholder="Informe o valor total" />
+            </div>
+
+            <div class="form-group mb-4">
+                <label>Valor Restante</label>
+                <input @bind-value="_novoPagamento!.ValorRestante" type="text" class="form-control" name="valorRestante"
+                       placeholder="Informe o valor total" />
+            </div>
+
+            <div class="form-group mb-4">
+                <label>Forma de Pagemento</label>
+
+                <select @bind="_novoPagamento!.FormaPagamento" class="form-control">
+                    <option value="">Selecione...</option>
+                    <option value="Pix">Pix</option>
+                    <option value="CartaoCredito">Cartao de Crédito</option>
+                    <option value="Dinheiro">Dinheiro</option>
+                </select>
+            </div>
+
+            <div class="form-group mb-4">
+                <label>Status</label>
+
+                <select @bind="_novoPagamento!.Status" class="form-control">
+                    <option value="">Selecione...</option>
+                    <option value="Pago">Pago</option>
+                    <option value="Parcial">Parcial</option>
+                    <option value="Pendente">Pendente</option>
+                </select>
+            </div>
+
+            
+
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    private string? erro = null;
+
+    [SupplyParameterFromForm]
+
+    private Pagamento? _novoPagamento { get; set; } = new Pagamento();
+
+    private void Salvar()
+    {
+        try
+        {
+            if (_novoPagamento.Cliente is null || _novoPagamento.Cliente == " ")
+            {
+                throw new Exception("O campo Nome é obrigatório");
+            }
+            else
+            {
+                Console.WriteLine("Pagamento Salvo!!");
+            }
+
+            orcamentoDAO.Inserir(_novoPagamento);
+
+            Navigation.NavigateTo("/Pagamento");
+        }
+        catch (Exception ex)
+        {
+            erro = ex.Message;
+        }
+    }
+
+}
