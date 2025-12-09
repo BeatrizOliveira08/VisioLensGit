@@ -89,6 +89,36 @@ namespace VisioLens_Blazor.Models
             }
         }
 
+        public Pagamento? BuscarPorId(int Id)
+        {
+            var comando = _conexao.CreateCommand(
+                "SELECT * FROM pagamento WHERE id_pag = @id;");
+            comando.Parameters.AddWithValue("@id", Id);
+
+            var leitor = comando.ExecuteReader();
+
+            if (leitor.Read())
+            {
+                var pagamento = new Pagamento();
+                pagamento.Id = leitor.GetInt32("id_pag");
+                pagamento.Cliente = DAOHelper.GetString(leitor, "cliente_pag");
+                pagamento.Fotografo = DAOHelper.GetString(leitor, "fotografo_pag");
+                pagamento.PacoteContratado = DAOHelper.GetString(leitor, "pacote_contratado_pag");
+                pagamento.ValorPago = leitor.GetDecimal("valor_pago_pag");
+                pagamento.ValorTotal = leitor.GetDecimal("valor_total_pag");
+                pagamento.ValorRestante = leitor.GetDecimal("valor_restante_pag");
+                pagamento.FormaPagamento = DAOHelper.GetString(leitor, "forma_pag");
+                pagamento.StatusPagamento = DAOHelper.GetString(leitor, "status_pag");
+
+
+                return pagamento;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public void Excluir(int Id)
         {
             try
