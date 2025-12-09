@@ -1,0 +1,124 @@
+﻿@page "/Orcamento/novo"
+@rendermode InteractiveServer
+
+@using VisioLens_Blazor.Models;
+@inject OrcamentoDAO orcamentoDAO;
+@inject NavigationManager Navigation;
+
+<PageTitle>Orcamento - Novo </PageTitle>
+
+<h1 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-6">Novo Orçamento</h1>
+<link href="/bootstrap/orcamentocriar.css" rel="stylesheet" />
+@if (erro != null)
+{
+    <div class="alert alert-danger">
+        @erro
+    </div>
+}
+
+<div class="row">
+    <div class="col">
+        <EditForm Model="_novoOrcamento" OnSubmit="Salvar">
+            <div class="form-group mb-4">
+                <label>Cliente</label>
+                <input @bind-value="_novoOrcamento!.Cliente" type="text" class="form-control" name="Cliente"
+                       placeholder="Informe o nome do cliente" />
+            </div>
+
+            <div class="form-group mb-4">
+                <label>Fotógrafo</label>
+                <input @bind-value="_novoOrcamento!.Fotografo"
+                       type="text"
+                       class="form-control"
+                       name="fotografo"
+                       placeholder="Informe o fotógrafo" />
+            </div>
+
+
+            <div class="form-group mb-4">
+                <label>Pacote de fotos</label>
+                <input @bind-value="_novoOrcamento!.PacoteDeFotos" type="text" class="form-control" name="pacoteDeFoto"
+                       placeholder="Informe o pacote de foto" />
+            </div>
+
+            <div class="form-group mb-4">
+                <label>Valor Total</label>
+                <input @bind-value="_novoOrcamento!.ValorTotal" type="text" class="form-control" name="valorTotal"
+                       placeholder="Informe o valor total" />
+            </div>
+
+            <div class="form-group mb-4">
+                <label>Status</label>
+
+                <select @bind="_novoOrcamento!.Status" class="form-control">
+                    <option value="">Selecione...</option>
+                    <option value="Aberto">Aberto</option>
+                    <option value="Andamento">Em Andamento</option>
+                    <option value="Concluido">Concluído</option>
+                    <option value="Cancelado">Cancelado</option>
+                </select>
+            </div>
+
+            <div class="form-group mb-4">
+                <label>Forma de Pagemento</label>
+
+                <select @bind="_novoOrcamento!.FormaDePagamento" class="form-control">
+                    <option value="">Selecione...</option>
+                    <option value="Dinheiro">Dinheiro</option>
+                    <option value="Pix">Pix</option>
+                    <option value="Debito">Débito</option>
+                    <option value="Credito">Crédito</option>
+                </select>
+            </div>
+
+            <div class="form-group mb-4">
+                <label>Tipo de Sessão</label>
+
+                <select @bind="_novoOrcamento!.TipoDeSessao" class="form-control">
+                    <option value="">Selecione...</option>
+                    <option value="Casamento">Casamento</option>
+                    <option value="Aniversario15">Aniversário de 15 anos</option>
+                    <option value="Aniversario">Aniversário</option>
+                    <option value="EnsaioExterno">Ensaio Externo</option>
+                    <option value="EnsaioStudio">Ensaio no studio</option>
+                    <option value="EnsaioNatal">Ensaio natalino</option>
+
+                </select>
+            </div>
+           
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    private string? erro = null;
+
+    [SupplyParameterFromForm]
+
+    private Orcamento? _novoOrcamento{ get; set; } = new Orcamento();
+
+    private void Salvar()
+    {
+        try
+        {
+            if (_novoOrcamento.Cliente is null || _novoOrcamento.Cliente == " ")
+            {
+                throw new Exception("O campo Nome é obrigatório");
+            }
+            else
+            {
+                Console.WriteLine("Colaborador Salvo!!");
+            }
+
+            orcamentoDAO.Inserir(_novoOrcamento);
+
+            Navigation.NavigateTo("/Orcamento");
+        }
+        catch (Exception ex)
+        {
+            erro = ex.Message;
+        }
+    }
+
+}

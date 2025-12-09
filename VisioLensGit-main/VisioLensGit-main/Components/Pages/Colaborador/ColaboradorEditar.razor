@@ -1,0 +1,86 @@
+﻿@page "/Colaborador/{Id:int}/editar"
+@rendermode InteractiveServer
+
+@using VisioLens_Blazor.Models;
+@inject ColaboradorDAO colaboradorDAO;
+@inject NavigationManager Navigation;
+
+<link rel="stylesheet" href="bootstrap/agendamento/agendamentoedicao.css" />
+
+<PageTitle>Colaborador</PageTitle>
+
+<h1 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-6">Atualização Colaborador - @colaborador.Nome</h1>
+
+@if (erro != string.Empty)
+{
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4" role="alert">
+        <strong class="font-bold">Erro!</strong>
+        <span class="block sm:inline">@erro</span>
+    </div>
+}
+
+<EditForm Model="colaborador" OnSubmit="Salvar">
+    <div class="mb-4">
+        <label for="Nome" class="block text-sm font-medium text-gray-700">Nome</label>
+        <input @bind-value="colaborador.Nome" type="text" id="Nome"
+               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" />
+    </div>
+    <div class="mb-4">
+        <label for="DataNascimento" class="block text-sm font-medium text-gray-700">Data Nascimento</label>
+        <input @bind-value="colaborador.Data_Nascimento" type="date" id="data"
+               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" />
+    </div>
+    <div class="mb-4">
+        <label for="telefone" class="block text-sm font-medium text-gray-700">Telefone</label>
+        <input @bind-value="colaborador.Telefone" type="text" id="telefone"
+               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" />
+    </div>
+    <div class="mb-4">
+        <label for="Email" class="block text-sm font-medium text-gray-700">E-mail</label>
+        <input @bind-value="colaborador.Email" type="text" id="email"
+               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" />
+    </div>
+   
+
+    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Salvar</button>
+</EditForm>
+
+@code {
+
+    private string erro = string.Empty;
+
+    [Parameter]
+    public int Id { get; set; }
+
+    [SupplyParameterFromForm]
+    private Colaborador colaborador { get; set; } = new();
+
+    protected override void OnInitialized()
+    {
+        var _colaborador = colaboradorDAO.BuscarPorId(Id);
+
+        if (_colaborador != null)
+        {
+            colaborador= _colaborador;
+        }
+        else
+        {
+            erro = "Colaborador não encontrado.";
+        }
+    }
+
+    private void Salvar()
+    {
+        try
+        {
+            colaboradorDAO.Atualizar(colaborador);
+
+            Navigation.NavigateTo("/ListaColaborador");
+        }
+        catch (Exception ex)
+        {
+            erro = $"Erro ao salvar o colaborador: {ex.Message}";
+        }
+
+    }
+}

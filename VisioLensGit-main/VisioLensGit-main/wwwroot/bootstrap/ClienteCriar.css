@@ -1,0 +1,140 @@
+﻿/* ===== Colaborador - Centralização robusta =====
+   Este CSS NÃO precisa de classes extras no HTML.
+   Ajuste --sidebar-width abaixo se o menu tiver outra largura.
+   ===================================================== */
+
+:root {
+    /* largura do menu lateral (ajuste se necessário) */
+    --sidebar-width: 260px;
+}
+
+/* Mantém fundo da aplicação */
+body {
+    background: #eef1f5 !important;
+    min-height: 100vh;
+}
+
+/* Se você tiver um h1 do Blazor que queira esconder (opcional) */
+/* Comentado por segurança — descomente se quiser remover o h1 padrão */
+/* h1.text-xl { display: none; } */
+
+/* Seleciona o form dentro da estrutura que você enviou: .row > .col > form
+   e transforma em um card fixo, centralizado na área à direita do sidebar. */
+.row > .col > form,
+.row > .col form { /* suporte a ambas as variações de seletor */
+    position: fixed;
+    /* centraliza verticalmente */
+    top: 50%;
+    /* calcula o centro da área visível à direita do menu:
+       (100% + sidebar-width) / 2 -> isto desloca o centro para a metade da área útil */
+    left: calc((100% + var(--sidebar-width)) / 2);
+    transform: translate(-50%, -50%);
+    z-index: 20; /* fica acima do conteúdo de fundo, abaixo do menu que costuma ter z-index maior */
+    width: 420px; /* largura do card */
+    max-width: calc(100% - var(--sidebar-width) - 40px); /* segurança para telas pequenas */
+    background: #ffffff;
+    padding: 36px 32px;
+    border-radius: 14px;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+    text-align: center;
+}
+
+    /* Título - usa o h1 que você colocou (se preferir ocultar o h1 do topo, remova o outro) */
+    .row > .col > form::before {
+        content: "CADASTRO DE CLIENTE";
+        display: block;
+        font-size: 22px;
+        font-weight: 800;
+        margin-bottom: 20px;
+        color: #000;
+    }
+
+/* Labels maiores e mais visíveis */
+.form-group label {
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+    color: #111;
+    text-align: left; /* mantém label alinhado ao input dentro do card */
+    margin-bottom: 8px;
+}
+
+/* Inputs pílula (compatível com Bootstrap .form-control) */
+.form-control {
+    width: 100%;
+    height: 46px !important;
+    padding: 0 16px !important;
+    border-radius: 28px !important;
+    border: 1.6px solid #222 !important;
+    font-size: 15px !important;
+    background: #fff !important;
+    box-shadow: none !important;
+    margin-bottom: 14px !important;
+}
+
+    /* Ajuste para input date (icone) */
+    .form-control[type="date"] {
+        padding-right: 12px !important;
+    }
+
+/* Botão centralizado e estilo preto */
+.btn-primary {
+    width: 70%;
+    max-width: 300px;
+    height: 48px;
+    margin: 12px auto 0 auto;
+    display: block;
+    border-radius: 28px !important;
+    background: #000 !important;
+    border-color: #000 !important;
+    color: #fff !important;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+    /* Hover do botão */
+    .btn-primary:hover {
+        background: #222 !important;
+        border-color: #222 !important;
+    }
+
+/* Mensagem de erro centralizada e alinhada com o card */
+.alert-danger {
+    position: fixed;
+    left: calc((100% + var(--sidebar-width)) / 2);
+    transform: translateX(-50%);
+    top: calc(50% - 240px); /* fica acima do card (aprox); ajuste se quiser */
+    width: 420px;
+    max-width: calc(100% - var(--sidebar-width) - 40px);
+    z-index: 30;
+    text-align: center;
+}
+
+/* RESPONSIVO: em telas pequenas assumimos que o menu ficará oculto/colapsado.
+   Remove compensação do sidebar e faz o card ocupar mais largura. */
+@media (max-width: 900px) {
+    :root {
+        --sidebar-width: 0px;
+    }
+
+    .row > .col > form,
+    .row > .col form {
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: calc(100% - 40px);
+        max-width: calc(100% - 40px);
+        padding: 28px;
+        top: 52%;
+    }
+
+    .alert-danger {
+        left: 50%;
+        transform: translateX(-50%);
+        top: calc(50% - 220px);
+        width: calc(100% - 40px);
+    }
+
+    .btn-primary {
+        width: 90%;
+    }
+}

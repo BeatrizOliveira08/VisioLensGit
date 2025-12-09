@@ -1,0 +1,103 @@
+﻿@page "/Orcamento/{Id:int}/editar"
+@rendermode InteractiveServer
+
+@using VisioLens_Blazor.Models;
+@inject OrcamentoDAO orcamentoDAO;
+@inject NavigationManager Navigation;
+
+<link rel="stylesheet" href="bootstrap/agendamento/agendamentoedicao.css" />
+
+<PageTitle>Orçamento</PageTitle>
+
+<h1 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-6">Atualização Orçamento - @orcamento.Cliente</h1>
+
+@if (erro != string.Empty)
+{
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4" role="alert">
+        <strong class="font-bold">Erro!</strong>
+        <span class="block sm:inline">@erro</span>
+    </div>
+}
+
+<EditForm Model="orcamento" OnSubmit="Salvar">
+    <div class="mb-4">
+        <label for="" class="block text-sm font-medium text-gray-700">Cliente</label>
+        <input @bind-value="orcamento.Cliente" type="text" id="cliente"
+               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" />
+    </div>
+    <div class="mb-4">
+        <label for="Fotografo" class="block text-sm font-medium text-gray-700">Fotográfo</label>
+        <input @bind-value="orcamento.Fotografo" type="text" id="fotografo"
+               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" />
+    </div>
+    <div class="mb-4">
+        <label for="PacoteFoto" class="block text-sm font-medium text-gray-700">Pacote de fotos</label>
+        <input @bind-value="orcamento.PacoteDeFotos" type="text" id="pacoteFoto"
+               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" />
+    </div>
+
+    <div class="mb-4">
+        <label for="ValorTotal" class="block text-sm font-medium text-gray-700">Valor Total</label>
+        <input @bind-value="orcamento.ValorTotal" type="text" id="valorTotal"
+               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" />
+    </div>
+
+    <div class="mb-4">
+        <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
+        <input @bind-value="orcamento.ValorTotal" type="text" id="valorTotal"
+               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" />
+    </div>
+
+    <div class="mb-4">
+        <label for="formaPagamento" class="block text-sm font-medium text-gray-700">Forma de Pagamento</label>
+        <input @bind-value="orcamento.FormaDePagamento" type="text" id="formaPagamento"
+               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" />
+    </div>
+
+    <div class="mb-4">
+        <label for="TipoSessao" class="block text-sm font-medium text-gray-700"> Tipo de Sessão</label>
+        <input @bind-value="orcamento.TipoDeSessao" type="text" id="TipoSessao"
+               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" />
+    </div>
+    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Salvar</button>
+</EditForm>
+
+@code {
+
+    private string erro = string.Empty;
+
+    [Parameter]
+    public int Id { get; set; }
+
+    [SupplyParameterFromForm]
+    private Orcamento orcamento { get; set; } = new();
+
+    protected override void OnInitialized()
+    {
+        var _orcamento = orcamentoDAO.BuscarPorId(Id);
+
+        if (_orcamento != null)
+        {
+            orcamento = _orcamento;
+        }
+        else
+        {
+            erro = "Orcamento não encontrado.";
+        }
+    }
+
+    private void Salvar()
+    {
+        try
+        {
+            orcamentoDAO.Atualizar(orcamento);
+
+            Navigation.NavigateTo("/ListaColaborador");
+        }
+        catch (Exception ex)
+        {
+            erro = $"Erro ao salvar o colaborador: {ex.Message}";
+        }
+
+    }
+}
